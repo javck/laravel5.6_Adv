@@ -14,6 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/backend/demo',function(){
-    return redirect('/demo/');
-});
+Route::get('/backend','SiteController@renderDashboard');
