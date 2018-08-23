@@ -5,6 +5,7 @@ Step1.如為 Mac 環境，請開啟專案的 storage 和 bootstrap 這兩個資�
 Step2.建立.env 檔案，生成 APP_KEY (php artisan key:generate)
 Step3.設定.env 檔案的相關內容，如範例
 Step4.設定 confing/app.php 的相關內容，如範例
+Step5.請切換到 Terminal，執行 composer install 來下載套件
 
 \*\*Laravel 官網
 
