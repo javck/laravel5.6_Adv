@@ -10,6 +10,7 @@ Step4.設定 confing/app.php 的相關內容，如範例
 
 . [https://laravel.com/](https://laravel.com/)
 . [https://adminlte.io/themes/AdminLTE/pages/UI/general.html](AdminLTE後台套版)
+. [https://github.com/javck/laravel5.6_Adv](專案Github版本庫)
 
 ## 後台頁面請參考 /backend
 
