@@ -14,4 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//後台Dashboard
 Route::get('/backend','SiteController@renderDashboard');
+
+//前台網店頁
+Route::get('/shop','SiteController@renderShop');
