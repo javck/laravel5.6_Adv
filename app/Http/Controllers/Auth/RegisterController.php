@@ -24,11 +24,11 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
+     * 定義登出後轉址路徑.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -66,7 +66,14 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'tel' => $data['tel'], //追加欄位
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    //自定義註冊頁面
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
     }
 }

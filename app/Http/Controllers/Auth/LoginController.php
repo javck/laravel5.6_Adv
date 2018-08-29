@@ -21,11 +21,11 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * 設定登入後所要轉址的路徑.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/backend';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    //自定義登入表單
+    public function showLoginForm()
+    {
+        return view('auth.login2');
+    }
+
+    //自定義驗證用欄位
+    public function username()
+    {
+        return 'name';
     }
 }

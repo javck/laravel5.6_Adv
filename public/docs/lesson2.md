@@ -23,3 +23,93 @@
         {
             $this->middleware('auth'); //這個控制器的所有方法都需要通過驗證
         }
+
+## 知識點 3.自定義登入--變更登入頁面
+
+    //覆寫LoginController.php的showLoginForm()
+    public function showLoginForm()
+    {
+        return view('auth.login2');
+    }
+
+## 知識點 4.自定義登入--變更登入時的驗證欄位
+
+    //覆寫LoginController.php的username()
+    public function username()
+    {
+        return 'name';
+    }
+
+## 知識點 5.自定義註冊--變更註冊頁面
+
+    //覆寫RegisterController.php的showRegistrationForm()
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+## 知識點 6.增加註冊的欄位
+
+    1. 變更註冊頁面，加入輸入項
+    2. 修改users表格的migration檔案，加入所需要的欄位
+    3. 修改Model類別 User的$fillable屬性，加入新欄位
+    4. 修改 app/Http/Controllers/Auth/RegisterController裡頭的create()
+
+## 知識點 7.Auth 靜態方法
+
+    Auth::user() //取得User物件
+    Auth::id() //取得User流水號
+    Auth::check() //確認使用者是否已經登入
+    Auth::logout() //使用者登出
+    Auth::login($user) //以此User物件登入
+
+## (補充)知識點 91.變更重設密碼的 Email 內容
+
+    1. 生成Notification檔案，指令如下：
+
+        php artisan make:notification PasswordReset
+
+    2. 變更app/Notifications/PasswordReset.php的內容如下：
+
+        public $token;
+
+        public function __construct($token)
+        {
+            $this->token = $token;
+
+        }
+
+        //變更主旨和信件內容
+        public function toMail($notifiable)
+        {
+            return (new MailMessage)
+                        ->subject('Email主旨'))
+                        ->line('重設密碼訊息第一行')
+                        ->action('重設密碼', url('password/reset',$this->token))
+                        ->line('重設密碼訊息第二行');
+
+        }
+
+    3.修改 User Model，加入以下內容：
+
+        public function sendPasswordResetNotification($token)
+        {
+            $this->notify(new ReminderNotification($token));
+        }
+
+        PS：需載入Notifiable Class並使用，否則會出現以下錯誤 Call to undefined method
+
+        作法是在User Model加入以下內容：
+        ...
+        use Illuminate\Notifications\Notifiable;
+        use App\Notifications\PasswordReset;
+        class User extends Authenticatable
+        {
+            use Notifiable;
+            …
+
+    4.覆寫視圖 Layout，需複製原始視圖到 resources 資料夾，指令如下：
+
+        php artisan vendor:publish
+
+    5.編輯視圖檔/resources/views/vendor/notifications
