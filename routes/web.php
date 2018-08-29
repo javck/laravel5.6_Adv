@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 
 //後台Dashboard
-Route::get('/backend','SiteController@renderDashboard');
+Route::get('/backend','SiteController@renderDashboard')->middleware('auth');
 
 //前台網店頁
 Route::get('/shop','SiteController@renderShop');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
