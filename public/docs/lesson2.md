@@ -50,7 +50,12 @@
         return 'name';
     }
 
-## 知識點 5.自定義註冊--變更註冊頁面
+## 知識點 5.自定義登入--登入後轉址路徑
+
+    //覆寫redirectTo屬性
+    protected $redirectTo = '/backend';
+
+## 知識點 6.自定義註冊--變更註冊頁面
 
     //覆寫RegisterController.php的showRegistrationForm()
     public function showRegistrationForm()
@@ -58,14 +63,14 @@
         return view('auth.register');
     }
 
-## 知識點 6.增加註冊的欄位
+## 知識點 7.增加註冊的欄位
 
     1. 變更註冊頁面，加入輸入項
     2. 修改users表格的migration檔案，加入所需要的欄位
     3. 修改Model類別 User的$fillable屬性，加入新欄位
     4. 修改 app/Http/Controllers/Auth/RegisterController裡頭的create()
 
-## 知識點 7.Auth 靜態方法
+## 知識點 8.Auth 靜態方法
 
     Auth::user() //取得User物件
     Auth::id() //取得User流水號
