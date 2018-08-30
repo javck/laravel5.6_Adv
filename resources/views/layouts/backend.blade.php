@@ -51,7 +51,7 @@
                     <b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
-                    <b>Admin</b>LTE</span>
+                    <b>哥布林</b>學苑</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             @include('partials.navbar')

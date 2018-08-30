@@ -103,7 +103,13 @@
 									<li><a href="#"><img src="images/icons/flags/german.png" alt="German"> DE</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Login</a>
+							<li>
+								@if (!Auth::check())
+									<a href="{{url('/login')}}">登入</a>
+								@else
+									<a href="{{url('/logout')}}">登出</a>
+								@endif
+								
 								<div class="top-link-section">
 									<form id="top-login" role="form">
 										<div class="input-group" id="top-login-username">

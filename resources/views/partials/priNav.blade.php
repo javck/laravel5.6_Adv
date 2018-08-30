@@ -159,8 +159,11 @@
 							<li><a href="#"><div>Sale</div><span>Awesome Works</span></a></li>
 							<li><a href="#"><div>Blog</div><span>Latest News</span></a></li>
 							<li><a href="#"><div>Videos</div><span>Latest News</span></a></li>
-                            <li><a href="#"><div>Contact</div><span>Get In Touch</span></a></li>
-                            <li><a href="{{url('/backend')}}"><div>管理後台</div><span>Backend</span></a></li>
+							<li><a href="#"><div>Contact</div><span>Get In Touch</span></a></li>
+							@if (Auth::user())
+								<li><a href="{{url('/backend')}}"><div>管理後台</div><span>Backend</span></a></li>
+							@endif
+                            
 						</ul>
 
 						<!-- Top Cart

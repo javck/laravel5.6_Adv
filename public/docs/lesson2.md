@@ -2,6 +2,8 @@
 
 > 說明如何利用 Laravel 自帶的驗證機制，來實現帳密登入.忘記密碼等功能
 
+[Laravel 官網說明](https://laravel.com/docs/5.6/authentication)
+
 ---
 
 ## 知識點 1.如何啟動 Laravel 內建驗證機制
@@ -54,6 +56,12 @@
 
     //覆寫redirectTo屬性
     protected $redirectTo = '/backend';
+
+    //如果需要商業邏輯判斷，也可以改成覆寫redirectTo()
+    protected function redirectTo()
+    {
+        return '/path';
+    }
 
 ## 知識點 6.自定義註冊--變更註冊頁面
 
