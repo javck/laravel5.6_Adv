@@ -17,6 +17,16 @@
 
         Route::get('/backend','SiteController@renderDashboard')->middleware('auth');
 
+        Route::middleware(['auth'])->group(function () {
+            Route::get('/backend/items', function () {
+                // Uses auth Middleware
+            });
+
+            Route::get('/backend/users', function () {
+                // Uses auth Middleware
+            });
+        });
+
     透過Controller建構子設定：
 
         public function __construct()
