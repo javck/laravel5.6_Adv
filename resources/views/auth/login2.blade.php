@@ -80,9 +80,9 @@
 
 								<div class="center">
 									<h4 style="margin-bottom: 15px;">社群帳號登入:</h4>
-									<a href="#" class="button button-rounded si-facebook si-colored">Facebook</a>
+									<a href="{{url('login/facebook')}}" class="button button-rounded si-facebook si-colored">Facebook</a>
 									<span class="d-none d-md-block">or</span>
-									<a href="#" class="button button-rounded si-twitter si-colored">Google+</a>
+									<a href="{{url('login/google')}}" class="button button-rounded si-twitter si-colored">Google+</a>
 								</div>
 							</div>
 						</div>
