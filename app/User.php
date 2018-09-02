@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //取得該使用者所擁有的訂單
+    public function orders(){
+        $this->hasMany('App\Order');
+    }
 }
