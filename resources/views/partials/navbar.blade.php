@@ -252,7 +252,10 @@
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();document.getElementById('logout-form').submit();">登出</a>
+                            <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: one;">
+                                {{ csrf_field() }}
+                            </form>
                         </div>
                     </li>
                 </ul>
