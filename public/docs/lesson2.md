@@ -86,6 +86,15 @@
     Auth::logout() //使用者登出
     Auth::login($user) //以此User物件登入
 
+## 知識點 9.如何製作登出功能
+
+    logout從5.3版本之後就從get改成post，代表不能只是用超連結就完成登出功能，新的作法如下：
+
+    <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();document.getElementById('logout-form').submit();">登出</a>
+    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: one;">
+        {{ csrf_field() }}
+    </form>
+
 ## (補充)知識點 91.變更重設密碼的 Email 內容
 
     1. 生成Notification檔案，指令如下：
