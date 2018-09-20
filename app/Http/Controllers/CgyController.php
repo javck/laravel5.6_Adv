@@ -19,7 +19,8 @@ class CgyController extends Controller
         $cgys = Cgy::whereHas('items', function ($query) {
             $query->where('price', '>', 8000);
         })->get();
-        dd($cgys);
+        //dd($cgys);
+        return view('cgys.index', compact('cgys'));
     }
 
     /**
