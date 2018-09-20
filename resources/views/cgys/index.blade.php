@@ -5,7 +5,7 @@
     <section class="content-header">
 
     <div class="box-body">
-        <table id="tb_cgys" class="table table-bordered" width="100%">
+        <table id="tb_cgys" class="table table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>流水號</th>
@@ -45,7 +45,46 @@
     <script>
         $(document).ready(function() 
         {
-            var table = $('#tb_cgys').DataTable();
+            var table = $('#tb_cgys').DataTable({
+                "language":
+                {
+                    "decimal":        "",
+                "emptyTable":     "沒有任何搜尋紀錄",
+                "info":           "顯示 _START_ / _END_ 全部有 _TOTAL_ 筆資料",
+                "infoEmpty":      "顯示 0 / 0 全部有 0 筆資料",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "顯示 _MENU_ 筆資料",
+                "loadingRecords": "搜尋中...",
+                "processing":     "處理中...",
+                "search":         "搜尋:",
+                "zeroRecords":    "沒有任何資料",
+                "paginate":
+                {
+                    "first":      "第一頁",
+                    "last":       "最後一頁",
+                    "next":       "下一頁",
+                    "previous":   "上一頁"
+                },
+                   "aria":
+                   {
+                        "sortAscending":  ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                   }
+                },
+                "order":[],
+                // rowReorder: 
+                // {
+                //     selector: 'td:nth-child(2)'
+                // },
+                "responsive": true,
+                "pageLength": 10,
+                "scrollCollapse": true,
+                "paging":   true,
+                "dom": '<"top"flp<"clear">>rt<"bottom"ifp<"clear">>',
+                "stateSave": true,
+            });
 
         });
     </script>
