@@ -51,9 +51,9 @@ class OrderController extends Controller
         //顯示該訂單擁有哪些商品
         //dd($order->items);
 
-        //$order->items()->attach(10,['qty'=>99]);
-        //$order->items()->detach(10);
-        //$order->items()->sync([10=>['qty'=>98], 2=>['qty'=>97], 3=>['qty'=>96]]);
+        //$order->items()->attach(10, ['qty' => 99]);
+        //$order->items()->detach();
+        $order->items()->sync([10 => ['qty' => 98], 2 => ['qty' => 97], 3 => ['qty' => 96]]);
         //dd($order->items[0]->pivot->qty);
     }
 

@@ -62,7 +62,7 @@
 
         //此用戶擁有哪些訂單
         public function orders(){
-            $this->hasMany('App\Order');
+            return $this->hasMany('App\Order');
         }
     }
 
@@ -72,7 +72,7 @@
 
     類似一對多，每個Model實例屬於/擁有多個Model實例，但反過來也是相同的一對多關係。例如每個商品(Item))))屬於多筆訂單(Order)，但每筆訂單也擁有多個商品。
 
-    表單設計上，會建立一個新的表單作為pivot，來紀錄多對多關係。欄位。舉例來說，商品和訂單的關係就會建立名為order_item的表格。
+    表單設計上，會建立一個新的表單作為pivot，來紀錄多對多關係。欄位。舉例來說，商品和訂單的多對多關係就會建立名為item_order的表格，依照字母順序來排列。
 
     class Order extends Model
     {
@@ -86,12 +86,14 @@
 
 ###注意：
 
-1.withPivot()說明 pivot 表格有哪些會使用到的額外欄位
-2.withTimestamps()通知 Laravel 要維護 pivot 表格的 created_at 和 updated_at 這兩個時間欄位
+    1.withPivot()說明 pivot 表格有哪些會使用到的額外欄位
+    2.withTimestamps()通知 Laravel 要維護 pivot 表格的 created_at 和 updated_at 這兩個時間欄位
 
 ##知識點 4.如何取得多對多 pivot 表格的額外資料
 
     pivot表格除了紀錄對應Model雙方的流水號之外，也能夠儲存額外欄位資訊，取得方式如下：
+
+    $order->items[0]->pivot->qty //取得訂單擁有的第一個商品，與其數量
 
 ##知識點 5.如何加入多對多資料
 
@@ -116,3 +118,55 @@
     $cgys = Cgy::whereHas('items', function ($query) { //找出分類中至少擁有商品價格為8000以上的
         $query->where('price', '>', 8000);
     })->get();
+
+##知識點 9.如何在 Migration 內加入外鍵關聯限制
+
+    加入關聯限制，可使用foreign()，如下範例：
+
+    class CreateOrdersTable extends Migration
+
+{
+
+    public function up()
+    {
+        Schema::create('orders', function (Blueprint $table) {
+            ...
+            $table->integer('user_id')->unsigned()->index();  //unsigned()表示此欄位不接受負數，index()表示此欄位加入索引
+            $table->foreign('user_id')->references('id')->on('users'); //語意為user_id為外鍵，參考到一個叫id的欄位，位置在users表格內
+            ...
+        });
+    }
+
+    移除關聯限制，可使用dropForeign()，如下範例：
+
+    public function down()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);  //移除user_id欄位的外鍵關係，需先於移除表格
+        });
+        Schema::dropIfExists('orders');
+    }
+
+##知識點 10(Option).Eager Loading? Lazy Loading?
+
+    指的是在 Parent Model 查詢的時候就一併查詢其他關聯的 Model，預設是 lazy loading，也就是當初次使用該屬性時才進行查詢
+
+    Eager Loading範例如下：
+    $books = App\Book::with('author')->get(); //一併先查詢關聯的Author資料，如有多個，改傳入陣列到with()內
+
+    foreach ($books as $book) {
+        echo $book->author->name;
+    }
+
+    Nested Eager Loading：
+    一併往下查詢到再下一層的Model，比如同時查詢該書的作者的聯絡單
+    $books = App\Book::with('author.contacts')->get();
+
+    Eager Loading限定欄位：
+    $users = App\Book::with('author:id,name')->get(); //一併先查詢關聯的Author資料，但只先取id和name欄位
+
+    Constraints Eager Loading:
+    //一併查詢posts表格的時候，同時對posts表格查詢加入title欄位內有first字樣的條件
+    $users = App\User::with(['posts' => function ($query) {
+        $query->where('title', 'like', '%first%');
+    }])->get();
