@@ -17,7 +17,8 @@ class CreateCgiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url')->default('#');
-            $table->string('pic',255)->nullable();
+            $table->string('pic', 255)->nullable();
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }

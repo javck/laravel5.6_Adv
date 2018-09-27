@@ -30,7 +30,7 @@ class CgyController extends Controller
      */
     public function create()
     {
-        //
+        return view('cgys.create');
     }
 
     /**

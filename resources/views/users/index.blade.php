@@ -37,7 +37,7 @@
                         <td> <a href="tel:{{$user->tel}}">{{$user->tel}}</a></td>
 
                         <!-- 訂單數 -->
-                        <td> @if($user->orders()!=null) {{$user->orders()->count()}} @else 0 @endif</td>
+                        <td> @if($user->orders()!=null) {{count($user->orders)}} @else 0 @endif</td>
 
                         <!-- 更新時間 -->
                         <td>{{ $user->updated_at->format('Y/m/d H:i:s') }}</td>
@@ -57,44 +57,11 @@
         $(document).ready(function() 
         {
             var table = $('#tb_users').DataTable({
-                "language":
-                {
-                "decimal":        "",
-                "emptyTable":     "沒有任何搜尋紀錄",
-                "info":           "顯示 _START_ / _END_ 全部有 _TOTAL_ 筆資料",
-                "infoEmpty":      "顯示 0 / 0 全部有 0 筆資料",
-                "infoFiltered":   "(filtered from _MAX_ total entries)",
-                "infoPostFix":    "",
-                "thousands":      ",",
-                "lengthMenu":     "顯示 _MENU_ 筆資料",
-                "loadingRecords": "搜尋中...",
-                "processing":     "處理中...",
-                "search":         "搜尋:",
-                "zeroRecords":    "沒有任何資料",
-                "paginate":
-                {
-                    "first":      "第一頁",
-                    "last":       "最後一頁",
-                    "next":       "下一頁",
-                    "previous":   "上一頁"
-                },
-                   "aria":
-                   {
-                        "sortAscending":  ": activate to sort column ascending",
-                        "sortDescending": ": activate to sort column descending"
-                   }
-                },
-                "order":[],
-                // rowReorder: 
-                // {
-                //     selector: 'td:nth-child(2)'
-                // },
-                "responsive": true,
-                "pageLength": 10,
-                "scrollCollapse": true,
                 "paging":   true,
+                "pageLength": 25,
+                "stateSave":true,
                 "dom": '<"top"flp<"clear">>rt<"bottom"ifp<"clear">>',
-                "stateSave": true,
+
             });
         });
     </script>

@@ -3,7 +3,7 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
-
+    <button onclick="javascript:location.href='{{url("/backend/cgy/create")}}'">建立新分類</button>
     <div class="box-body">
         <table id="tb_cgys" class="table table-bordered" style="width:100%">
             <thead>
@@ -12,6 +12,7 @@
                     <th>名稱</th>
                     <th>圖片</th>
                     <th>圖片網址</th>
+                    <th>商品數</th>
                     <th>更新日期</th>
                 </tr>
             </thead>
@@ -29,6 +30,9 @@
 
                         <!-- 圖片網址 url -->
                         <td> <a href="{{$cgy->url}}">{{$cgy->url}}</a></td>
+
+                        <!-- 分類商品數 -->
+                        <td> {{$cgy->items()->count() }}</td>
 
                         <!-- 更新時間 -->
                         <td>{{ $cgy->updated_at->format('Y/m/d H:i:s') }}</td>
@@ -50,37 +54,37 @@
                 "language":
                 {
                     "decimal":        "",
-                "emptyTable":     "沒有任何搜尋紀錄",
-                "info":           "顯示 _START_ / _END_ 全部有 _TOTAL_ 筆資料",
-                "infoEmpty":      "顯示 0 / 0 全部有 0 筆資料",
-                "infoFiltered":   "(filtered from _MAX_ total entries)",
-                "infoPostFix":    "",
-                "thousands":      ",",
-                "lengthMenu":     "顯示 _MENU_ 筆資料",
-                "loadingRecords": "搜尋中...",
-                "processing":     "處理中...",
-                "search":         "搜尋:",
-                "zeroRecords":    "沒有任何資料",
-                "paginate":
-                {
-                    "first":      "第一頁",
-                    "last":       "最後一頁",
-                    "next":       "下一頁",
-                    "previous":   "上一頁"
-                },
-                   "aria":
-                   {
-                        "sortAscending":  ": activate to sort column ascending",
-                        "sortDescending": ": activate to sort column descending"
-                   }
-                },
+                    "emptyTable":     "沒有任何搜尋紀錄",
+                    "info":           "顯示 _START_ / _END_ 全部有 _TOTAL_ 筆資料",
+                    "infoEmpty":      "顯示 0 / 0 全部有 0 筆資料",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "顯示 _MENU_ 筆資料",
+                    "loadingRecords": "搜尋中...",
+                    "processing":     "處理中...",
+                    "search":         "搜尋:",
+                    "zeroRecords":    "沒有任何資料",
+                    "paginate":
+                    {
+                        "first":      "第一頁",
+                        "last":       "最後一頁",
+                        "next":       "下一頁",
+                        "previous":   "上一頁"
+                    },
+                    "aria":
+                    {
+                            "sortAscending":  ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                    }
+                    },
                 "order":[],
                 // rowReorder: 
                 // {
                 //     selector: 'td:nth-child(2)'
                 // },
                 "responsive": true,
-                "pageLength": 10,
+                "pageLength": 25,
                 "scrollCollapse": true,
                 "paging":   true,
                 "dom": '<"top"flp<"clear">>rt<"bottom"ifp<"clear">>',

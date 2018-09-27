@@ -43,8 +43,8 @@
     language    設定文字內容
     order       設定排序
     responsive  設定是否支持手機版本
-    pageLength  設定每頁資料數量，需與paging設定搭配
     paging      設定是否支援分頁
+    pageLength  設定每頁資料數量，需與paging設定搭配
     dom         DOM元素修改
         EX:以下設定可讓分頁按鈕於上下方都出現
         "dom": '<"top"flp<"clear">>rt<"bottom"ifp<"clear">>'
@@ -53,3 +53,7 @@
 ##知識點 4.如何讓欄位隨著視窗大小調整寬度
 
     請透過設定Table標籤的Style屬性，加入width:100%，如範例：style="width:100%"
+
+##知識點 5.如何更好的支持手機版
+
+    可以參考這裡(https://editor.datatables.net/examples/extensions/responsive.html)
