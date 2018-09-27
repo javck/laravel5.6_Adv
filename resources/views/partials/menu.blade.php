@@ -33,6 +33,12 @@
                     <span>分類</span>
                 </a>
             </li>
+            <li>
+                <a href="{{url('backend/user')}}">
+                    <i class="fa fa-user"></i>
+                    <span>使用者</span>
+                </a>
+            </li>
             {{-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>

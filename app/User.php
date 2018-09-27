@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','tel',
+        'name', 'email', 'password', 'tel',
     ];
 
     /**
@@ -28,7 +28,8 @@ class User extends Authenticatable
     ];
 
     //取得該使用者所擁有的訂單
-    public function orders(){
-        $this->hasMany('App\Order');
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 }
