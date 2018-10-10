@@ -39,6 +39,12 @@
                     <span>使用者</span>
                 </a>
             </li>
+            <li>
+                <a href="{{url('backend/item')}}">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span>商品</span>
+                </a>
+            </li>
             {{-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
