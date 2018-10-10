@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $fillable = ['name','desc','pic','price'];
+    protected $fillable = ['name', 'desc', 'pic', 'price', 'cgy_id'];
 
     //該商品所屬分類
-    public function cgy(){
+    public function cgy()
+    {
         return $this->belongsTo('App\Cgy');
     }
 
     //該商品屬於哪些訂單
-    public function orders(){
+    public function orders()
+    {
         return $this->belongsToMany('App\Order')->withTimestamps();
     }
 }
