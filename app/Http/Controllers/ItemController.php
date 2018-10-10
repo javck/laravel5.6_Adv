@@ -37,7 +37,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        Item::create($request->all());
+        $inputs = $request->all();
+        $cgy_ids = $inputs['cgy_id'];
+        //將cgy_ids陣列轉換為用逗號隔開的字串
+        $inputs['cgy_id'] = implode(',', $cgy_ids);
+
+        Item::create($inputs);
         return redirect('backend/item');
     }
 
@@ -63,8 +68,12 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $inputs = $request->all();
         $item = Item::findOrFail($id);
-        $item->update($request->all());
+        $cgy_ids = $inputs['cgy_id'];
+        //將cgy_ids陣列轉換為用逗號隔開的字串
+        $inputs['cgy_id'] = implode(',', $cgy_ids);
+        $item->update($inputs);
         return redirect('backend/item');
     }
 

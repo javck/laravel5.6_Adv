@@ -16,10 +16,11 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('cgy_id')->unsigned()->index();
+            // $table->integer('cgy_id')->unsigned()->index();
+            $table->string('cgy_id')->nullable();
             $table->integer('price')->default(0)->unsigned();
-            $table->string('pic',255)->nullable();
-            $table->string('desc',300)->nullable();
+            $table->string('pic', 255)->nullable();
+            $table->string('desc', 300)->nullable();
             $table->timestamps();
         });
     }
