@@ -2,7 +2,6 @@
 @section('title','建立新分類')
 @section('content')
 
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="col-sm-12">
             <a class="btn btn-success btn-rounded" href="{{ url('/backend/cgy') }}">返回新分類列表 </a><br><br>

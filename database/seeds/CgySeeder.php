@@ -15,8 +15,12 @@ class CgySeeder extends Seeder
     {
         Cgy::truncate();
         $faker = Faker::create();
-        for ($i=0; $i < 10; $i++) { 
-            Cgy::create(['name'=>$faker->name , 'pic'=>$faker->imageUrl($width = 160, $height = 120) , 'url'=>$faker->url]);
+        for ($i = 0; $i < 10; $i++) {
+            Cgy::create(['name' => $faker->name, 'pic' => $faker->imageUrl($width = 160, $height = 120), 'url' => $faker->url]);
         }
+        Cgy::create(['name' => '分類A', 'pic' => 'images/about/1.jpg', 'url' => '#']);
+        Cgy::create(['name' => '分類B', 'pic' => 'images/about/2.jpg', 'url' => '#']);
+        Cgy::create(['name' => '分類C', 'pic' => 'images/about/3.jpg', 'url' => '#']);
+        Cgy::create(['name' => '分類D', 'pic' => 'images/about/4.jpg', 'url' => '#']);
     }
 }

@@ -20,13 +20,17 @@
                 @foreach ($cgys as $cgy)
                     <tr>
                         <!-- 流水號 id -->
-                        <td> <a href="{{url('backend/cgys/'.$cgy->id.'/edit')}}">{{ $cgy->id }}</a></td>
+                        <td> <a href="{{url('backend/cgy/'.$cgy->id.'/edit')}}">{{ $cgy->id }}</a></td>
 
                         <!-- 分類名稱 name -->
                         <td> {{ $cgy->name }}</td>
 
-                        <!-- 分類圖片 pic -->
-                        <td> <img src="{{$cgy->pic}}"></td>
+                        <!-- 分類圖片 pic ，如果是http或https開頭的網址就直接使用，否則為內部資源路徑使用asset來生成-->
+                        @if(substr( $cgy->pic, 0, 4 ) === "http" || substr( $cgy->pic, 0, 5 ) === "https")
+                            <td> <img src="{{$cgy->pic}}" style="width:120px"></td>
+                        @else
+                            <td> <img src="{{asset($cgy->pic)}}" style="width:120px"></td>
+                        @endif
 
                         <!-- 圖片網址 url -->
                         <td> <a href="{{$cgy->url}}">{{$cgy->url}}</a></td>
@@ -89,6 +93,7 @@
                 "paging":   true,
                 "dom": '<"top"flp<"clear">>rt<"bottom"ifp<"clear">>',
                 "stateSave": true,
+                 "order": [5, 'desc'],
             });
 
         });

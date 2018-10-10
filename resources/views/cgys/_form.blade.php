@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-6"> 
-    	<div class="col-lg-6">
+    	<div class="col-lg-12">
     		<input type="hidden" name="_token" value="{{ csrf_token() }}">
     		<!-- 名稱 name-->
     		@if (isset($errors) and $errors->has('name'))
@@ -29,6 +29,21 @@
 		    		{{ Form::label('url','網址',['class'=>'text-warning']) }}
 					{{ Form::text('url',null,['class'=>'form-control','rows'=>'3']) }}
 					<p class="help-block">请输入網址</p>
+				</div>
+			@endif
+			
+			<!-- pic 圖片-->
+    		@if (isset($errors) and $errors->has('pic'))
+		    	<div class="form-group has-error">
+		    		{{ Form::label('pic','圖片網址') }}&nbsp;&nbsp;{{ Form::label('pic',$errors->first('pic'),['class'=>'text-danger control-label','for'=>'inputError']) }}
+					{{ Form::text('pic',null,['class'=>'form-control','rows'=>'3']) }}
+					<p class="help-block">请输入圖片網址</p>
+				</div>
+	    	@else
+	    		<div class="form-group">
+		    		{{ Form::label('pic','圖片網址',['class'=>'text-warning']) }}
+					{{ Form::text('pic',null,['class'=>'form-control','rows'=>'3']) }}
+					<p class="help-block">请输入圖片網址</p>
 				</div>
 	    	@endif
 

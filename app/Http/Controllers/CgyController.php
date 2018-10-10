@@ -16,10 +16,13 @@ class CgyController extends Controller
     {
         //dd(Cgy::has('items')->get());
         //dd(Cgy::has('items','>=',5)->get());
-        $cgys = Cgy::whereHas('items', function ($query) {
-            $query->where('price', '>', 8000);
-        })->get();
+        // $cgys = Cgy::whereHas('items', function ($query) {
+        //     $query->where('price', '>', 8000);
+        // })->get();
         //dd($cgys);
+
+        $cgys = Cgy::get();
+
         return view('cgys.index', compact('cgys'));
     }
 
@@ -41,7 +44,9 @@ class CgyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->only(['pic', 'url', 'name', 'enabled']);
+        $cgy = Cgy::create($inputs);
+        return redirect('backend/cgy');
     }
 
     /**
@@ -66,7 +71,8 @@ class CgyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cgy = Cgy::findOrFail($id);
+        return view('cgys.edit', compact('cgy'));
     }
 
     /**
@@ -78,7 +84,9 @@ class CgyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cgy = Cgy::findOrFail($id);
+        $cgy->update($request->only(['pic', 'url', 'name', 'enabled']));
+        return redirect('backend/cgy');
     }
 
     /**
@@ -89,6 +97,9 @@ class CgyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('destroy');
+        $cgy = Cgy::findOrFail($id);
+        $cgy->delete();
+        return redirect('/backend/cgy');
     }
 }
