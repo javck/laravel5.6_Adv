@@ -46,3 +46,14 @@
     multiple            是否支持多選，預設為false
     placeholder         當未選取任何選項時的提示文字
     tags                是否支持新增選項
+
+##知識點 4.單選輸入項設計
+
+    建議使用Form套件生成輸入項，範例如下，參數依序為：元素name.選項陣列.預設選項.其他屬性陣列
+    {!! Form::select('cgy_id', $cgys , null , ['id'=>'cgy_id' , 'class'=> 'form-control']) !!}
+
+    由Controller回傳的選項key.value陣列，作法如下：
+
+    //使用pluck()，回傳所有資料的name和id欄位，以key.value陣列形式
+    $cgys = \App\Cgy::pluck('name', 'id');
+    return view('items.edit', compact('item', 'cgys'));
