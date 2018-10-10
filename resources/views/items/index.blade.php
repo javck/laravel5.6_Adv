@@ -8,8 +8,8 @@
             <thead>
                 <tr>
                     <th>流水號</th>
-                    <th>分類</th>
                     <th>名稱</th>
+                    <th>商品分類</th>
                     <th>圖片</th>
                     <th>價格</th>
                     <th>建立日期</th>
@@ -25,7 +25,7 @@
                         <td> {{ $item->name }}</td>
 
                         <!-- 分類名稱 cgy_id -->
-                        <td> {{ $item->cgy->name }}</td>
+                        <td> {{ $item->getCgysName() }}</td>
 
                         <!-- 商品圖片 pic ，如果是http或https開頭的網址就直接使用，否則為內部資源路徑使用asset來生成-->
                         @if(substr( $item->pic, 0, 4 ) === "http" || substr( $item->pic, 0, 5 ) === "https")

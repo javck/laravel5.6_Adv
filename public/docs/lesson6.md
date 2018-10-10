@@ -57,3 +57,20 @@
     //使用pluck()，回傳所有資料的name和id欄位，以key.value陣列形式
     $cgys = \App\Cgy::pluck('name', 'id');
     return view('items.edit', compact('item', 'cgys'));
+
+##知識點 5.多選輸入項設計
+
+    同樣建議使用Form套件生成輸入項，與單選類似，不同在於name後面要加上[]，回傳值才會是陣列，另外要加上multiple屬性
+    {!! Form::select('cgy_id[]', $cgys , null , ['id'=>'cgy_id' , 'class'=> 'form-control', 'multiple']) !!}
+
+    如果希望多一個清除所有選項的按鈕，可以加上在呼叫select2()時加上allowClear，如下示範：
+    $('#cgy_id').select2({
+    	allowClear: true,
+    });
+
+##知識點 6.implode/explode?
+
+    為了要存入多選的內容，所以將Item的cgy_id欄位改成字串，將選項以逗號隔開的形式來儲存。因為常需要在字串和陣列間轉換就會用到explode()和implode()，說明如下：
+
+    回傳陣列  = explode(分隔的字串,要處理的字串);
+    回傳字串  = implode(分隔的字串,要處理的陣列);

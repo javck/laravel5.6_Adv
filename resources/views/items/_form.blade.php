@@ -20,8 +20,8 @@
 			
 			<!-- 分類 cgy_id -->
 			<div class="form-group">
-				{{ Form::label('cgy_id','分類',['class'=>'text-warning']) }}<br>
-				{!! Form::select('cgy_id', $cgys , null , ['id'=>'cgy_id' , 'class'=> 'form-control']) !!}
+				{{ Form::label('cgy_id[]','分類',['class'=>'text-warning']) }}<br>
+				{!! Form::select('cgy_id[]', $cgys , null , ['id'=>'cgy_id' , 'class'=> 'form-control', 'multiple']) !!}
 				<p class="help-block">請選擇商品分類</p>
 			</div>
             
@@ -104,8 +104,9 @@
 @section('js')
 <script>
 	 $('#cgy_id').select2({
-	 	placeholder: "請選擇分類",            
-	    width: 'resolve',                         
+		placeholder: "請選擇分類",
+		allowClear: true,            
+		width: 'resolve',                        
 	});
 </script>
 @stop
