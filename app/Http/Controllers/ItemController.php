@@ -14,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::get();
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -24,7 +25,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $cgys = \App\Cgy::get()->pluck('name', 'id');
+        return view('items.create', compact('cgys'));
     }
 
     /**
@@ -35,22 +37,8 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $item = Item::findOrFail($id);
-        //dd($item);
-        
-        //dd($item->cgy);//取得該商品所屬的類別
-        dd($item->orders);//取得該商品屬於哪些訂單
+        Item::create($request->all());
+        return redirect('backend/item');
     }
 
     /**
@@ -61,7 +49,9 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $cgys = \App\Cgy::pluck('name', 'id');
+        return view('items.edit', compact('item', 'cgys'));
     }
 
     /**
@@ -73,7 +63,9 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->update($request->all());
+        return redirect('backend/item');
     }
 
     /**
@@ -84,6 +76,8 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return redirect('backend/item');
     }
 }
