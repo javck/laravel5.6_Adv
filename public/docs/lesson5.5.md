@@ -76,7 +76,8 @@
     <a onclick="event.preventDefault();document.getElementById('del-form').submit();">刪除分類</a>
 
     //指定刪除某資料的表單
-    <form id="del-form" action="{{ url('/backend/cgy') }}" method="delete" style="display: none;">
+    <form id="del-form" action="{{ url('/backend/cgy/'.$cgy->id) }}" method="post" style="display: none;">
         {{ Form::hidden('id', $cgy->id) }}
+        {{ method_field('DELETE') }} //必須在這裡宣告要請求的方法
         {{ csrf_field() }}
     </form>

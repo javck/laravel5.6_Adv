@@ -80,6 +80,6 @@
 
 @section('js')
 <script>
-	 
+
 </script>
 @stop

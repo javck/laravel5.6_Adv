@@ -97,7 +97,7 @@ class CgyController extends Controller
      */
     public function destroy($id)
     {
-        dd('destroy');
+        // dd('destroy');
         $cgy = Cgy::findOrFail($id);
         $cgy->delete();
         return redirect('/backend/cgy');
