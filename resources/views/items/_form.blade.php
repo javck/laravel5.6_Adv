@@ -106,7 +106,8 @@
 	 $('#cgy_id').select2({
 		placeholder: "請選擇分類",
 		allowClear: true,            
-		width: 'resolve',                        
+		width: 'resolve',
+		tags: true,                        
 	});
 </script>
 @stop
