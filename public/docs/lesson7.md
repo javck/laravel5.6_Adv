@@ -181,3 +181,81 @@
     });
 
     PS：預設web中介層群組就會分配給 routes/web.php裡頭的所有路由，而api中介層則是分配給 routes/api.php裡頭的所有路由。這部份是由 RouteServiceProvider負責的。
+
+##知識點 7.中介層傳參數 Middleware Parameters
+
+    中介層也能夠收到額外的參數。例如假如應用程式在讓登入使用者執行特定作業前需要去驗證其具有指定的角色，你能夠建立一個名為CheckRole的中介層收到一個角色名，指定其取得額外的參數。
+
+    額外的中介層參數將會在 $next 參數後面提供！
+
+    <?php
+
+    namespace App\Http\Middleware;
+
+    use Closure;
+
+    class CheckRole
+    {
+        /**
+        * Handle the incoming request.
+        *
+        * @param  \Illuminate\Http\Request  $request
+        * @param  \Closure  $next
+        * @param  string  $role
+        * @return mixed
+        */
+        public function handle($request, Closure $next, $role)
+        {
+            if (! $request->user()->hasRole($role)) {
+                // Redirect...
+            }
+
+            return $next($request);
+        }
+
+    }
+
+    Middleware parameters may be specified when defining the route by separating the middleware name and parameters with a :. Multiple parameters should be delimited by commas:
+
+    中介層參數能夠在定義路由時設定，中介層名稱和值之間用:隔開，如果有多個參數請用逗號隔開
+
+    Route::put('post/{id}', function ($id) {
+        //
+    })->middleware('role:editor');
+
+##知識點 8.針對控制器設定中介層
+
+    中介層也能夠被設定給控制器的路由：
+
+    Route::get('profile', 'UserController@show')->middleware('auth');
+
+    然而，直接在控制器的建構子裡頭去設定中介層才是更方便的。在建構子裡頭使用中介層方法，你能夠簡單的指定中介層給控制器的Action，甚至你還能夠限定在控制器裡頭的特定Action方法。如下例：
+
+    class UserController extends Controller
+    {
+        /**
+        * Instantiate a new controller instance.
+        *
+        * @return void
+        */
+        public function __construct()
+        {
+            $this->middleware('auth');
+
+            $this->middleware('log')->only('index');//只針對index()
+
+            $this->middleware('subscribed')->except('store');//針對所有Action，除了store()
+        }
+    }
+
+    另外，控制器也允許你直接利用Closure來註冊中介層。這提供一個很便利的管道來定義中介層給單一控制器使用
+
+    $this->middleware(function ($request, $next) {
+        // ...
+
+        return $next($request);
+    });
+
+##應用點 1.如何指定頁面必須要登入才能夠進入
+
+    只要在該路由加上auth這個中介層即可!
