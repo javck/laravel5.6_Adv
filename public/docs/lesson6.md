@@ -74,3 +74,18 @@
 
     回傳陣列  = explode(分隔的字串,要處理的字串);
     回傳字串  = implode(分隔的字串,要處理的陣列);
+
+##知識點 7.變更外觀?
+
+    你可以將select2設定為無法作用...
+    你可以讓label的for屬性，對select2產生作用...
+    你可以調整select2的寬度...
+    你可以設定select2的主題...
+
+    請參考[這裡](https://select2.org/appearance)
+
+##知識點 8.選項為資料表某欄位的值，且不得重複?
+
+    結合distinct()和pluck()就能夠達成，例如取得所有不重複銷售店家名稱，可以這樣作：
+
+    Order::distinct()->pluck('store_name');
