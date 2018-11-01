@@ -1,6 +1,6 @@
 # Middleware 中介層
 
-> 說明如何使用 Laravel 的中介層以在發生某特定狀況前能介入處理，比如當進入某些需要權限的頁面但尚未登入時會自動導到登入頁面。
+> 說明如何使用 Laravel 的中介層以在發生某特定條件前能介入處理，比如當進入某些需要權限的頁面但尚未登入時會自動導到登入頁面。
 
 [Middleware] 官網說明](https://laravel.com/docs/5.6/middleware)
 
@@ -223,6 +223,17 @@
         //
     })->middleware('role:editor');
 
+##知識點 7.1.中介層可以傳陣列參數嗎?
+
+    答案是不行，但你可以透過傳入多個參數來達到相同的效果，也就是ellipsis parameter。如下示範...
+
+
+    //aryMiddleware.php
+    public function handle($request, Closure $next, ...$roles)
+
+    //web.php
+    ...->middleware('ary:role1,role2,role3');
+
 ##知識點 8.針對控制器設定中介層
 
     中介層也能夠被設定給控制器的路由：
@@ -243,6 +254,7 @@
             $this->middleware('auth');
 
             $this->middleware('log')->only('index');//只針對index()
+            $this->middleware('log')->only(['index','create']);//只針對index()和create()
 
             $this->middleware('subscribed')->except('store');//針對所有Action，除了store()
         }

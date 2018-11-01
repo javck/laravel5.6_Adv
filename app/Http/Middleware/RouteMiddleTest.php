@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Log;
+use Auth;
 
 class RouteMiddleTest
 {
@@ -17,6 +18,9 @@ class RouteMiddleTest
     public function handle($request, Closure $next)
     {
         Log::debug('RouteMiddleTest ...');
+        if (Auth::user()) {
+            Log::debug('user id:' . Auth::user()->id);
+        }
         return $next($request);
     }
 }

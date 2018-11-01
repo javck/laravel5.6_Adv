@@ -28,13 +28,16 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 //Route::get('/home', 'HomeController@index')->name('home');
 
 //針對路由加入單一中介層
-//Route::get('/home', 'HomeController@index')->name('home')->middleware('test');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('test');
 
 //針對路由加入多個中介層
 //Route::get('/home', 'HomeController@index')->name('home')->middleware('test', 'test2');
 
 //針對路由加入帶參數中介層
-Route::get('/home', 'HomeController@index')->name('home')->middleware('args:javck');
+//Route::get('/home', 'HomeController@index')->name('home')->middleware('args:javck');
+
+//針對路由加入帶多個參數中介層
+//Route::get('/home', 'HomeController@index')->name('home')->middleware('args:hello,javck,zack');
 
 
 //後台

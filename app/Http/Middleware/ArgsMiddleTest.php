@@ -14,9 +14,14 @@ class ArgsMiddleTest
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $name)
+    //public function handle($request, Closure $next, $name) //單一參數
+    public function handle($request, Closure $next, $type, ...$names) //多個參數
     {
-        Log::debug('Args name:' . $name);
+        Log::debug('Args type:' . $type);
+        foreach ($names as $name) {
+            Log::debug('Args name:' . $name);
+        }
+        //Log::debug('Args name:' . $name);
         return $next($request);
     }
 }
