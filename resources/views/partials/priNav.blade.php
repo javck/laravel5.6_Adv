@@ -1,5 +1,5 @@
 <ul>
-							<li class="current"><a href="#"><div>Home</div><span>Lets Start</span></a>
+							<li class="current"><a href="#"><div>@lang('messages.home')</div><span>Lets Start</span></a>
 								<ul>
 									<li><a href="index-corporate.html"><div>Home - Corporate</div></a>
 										<ul>
@@ -69,7 +69,7 @@
 							</li>
 							<!-- Mega Menu
 							============================================= -->
-							<li class="mega-menu"><a href="#"><div>Men</div><span>Out of the Box</span></a>
+							<li class="mega-menu"><a href="#"><div>@lang('messages.men')</div><span>Out of the Box</span></a>
 								<div class="mega-menu-content style-2 clearfix">
 									<ul class="mega-menu-column col-lg-3">
 										<li class="mega-menu-title"><a href="#"><div>Footwear</div></a>
@@ -125,7 +125,7 @@
 									</ul>
 								</div>
 							</li><!-- .mega-menu end -->
-							<li><a href="#"><div>Women</div><span>Out of the Box</span></a>
+							<li><a href="#"><div>@lang('messages.women')</div><span>Out of the Box</span></a>
 								<div class="mega-menu-content style-2 clearfix">
 									<ul class="mega-menu-column col-lg-6">
 										<li class="mega-menu-title"><a href="#"><div>Footwear</div></a>
@@ -155,11 +155,11 @@
 									</ul>
 								</div>
 							</li><!-- .mega-menu end -->
-							<li><a href="#"><div>Accessories</div><span>Awesome Works</span></a></li>
-							<li><a href="#"><div>Sale</div><span>Awesome Works</span></a></li>
-							<li><a href="#"><div>Blog</div><span>Latest News</span></a></li>
-							<li><a href="#"><div>Videos</div><span>Latest News</span></a></li>
-							<li><a href="#"><div>Contact</div><span>Get In Touch</span></a></li>
+							<li><a href="#"><div>@lang('messages.accessories')</div><span>Awesome Works</span></a></li>
+							<li><a href="#"><div>@lang('messages.sale')</div><span>Awesome Works</span></a></li>
+							<li><a href="#"><div>@lang('messages.blog')</div><span>Latest News</span></a></li>
+							<li><a href="#"><div>@lang('messages.videos')</div><span>Latest News</span></a></li>
+							<li><a href="#"><div>@lang('messages.contact')</div><span>Get In Touch</span></a></li>
 							@if (Auth::user())
 								<li><a href="{{url('/backend')}}"><div>管理後台</div><span>Backend</span></a></li>
 							@endif

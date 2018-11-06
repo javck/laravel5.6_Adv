@@ -40,6 +40,17 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('test');
 //Route::get('/home', 'HomeController@index')->name('home')->middleware('args:hello,javck,zack');
 
 
+//本地化示範
+Route::get('welcome', function () {
+    return __('messages.welcome', ['name' => 'Zack']);
+});
+
+//本地化複數形示範
+Route::get('buys', function () {
+    return trans_choice('messages.buys', 8, ['item' => 'PS4']);
+});
+
+
 //後台
 
 Route::group(['prefix' => 'backend'], function () {

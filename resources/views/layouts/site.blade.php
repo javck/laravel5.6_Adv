@@ -288,7 +288,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=" color: #333;">Buy Stylish Bags at Discounted Prices</div>
+							data-endeasing="Power4.easeIn" style=" color: #333;">@lang('messages.buyBags')</div>
 
 							<div class="tp-caption ltl tp-resizeme revo-slider-emphasis-text nopadding noborder"
 							data-x="0"
@@ -302,7 +302,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">Messenger Bags</div>
+							data-endeasing="Power4.easeIn" style=" color: #333; line-height: 1.15;">@lang('messages.mesBag')</div>
 
 							<div class="tp-caption ltl tp-resizeme revo-slider-desc-text tleft"
 							data-x="0"
@@ -316,7 +316,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=" color: #333; max-width: 550px; white-space: normal;">Grantees insurmountable challenges invest protect, growth improving quality social entrepreneurship.</div>
+							data-endeasing="Power4.easeIn" style=" color: #333; max-width: 550px; white-space: normal;">@lang('messages.content')</div>
 
 							<div class="tp-caption ltl tp-resizeme"
 							data-x="0"
@@ -330,7 +330,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin"><span>Start Shopping</span> <i class="icon-angle-right"></i></a></div>
+							data-endeasing="Power4.easeIn" style=""><a href="#" class="button button-border button-large button-rounded tright nomargin"><span>@lang('messages.start')</span> <i class="icon-angle-right"></i></a></div>
 
 							<div class="tp-caption utb tp-resizeme revo-slider-caps-text uppercase"
 							data-x="510"
