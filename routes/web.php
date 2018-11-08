@@ -19,7 +19,17 @@ Route::get('/', function () {
 Route::get('/backend', 'SiteController@renderDashboard')->middleware('auth');
 
 //前台網店頁
-Route::get('/shop', 'SiteController@renderShop');
+
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+    Route::get('/', 'SiteController@renderHomePage');
+    Route::get('/shop', 'SiteController@renderShop');
+    // Route::get('/thank',function(){
+    //     return view('pages.thankyou');
+    // });
+    Route::get('/404-page', function () {
+        return view('404-page');
+    });
+});
 
 Auth::routes();
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
