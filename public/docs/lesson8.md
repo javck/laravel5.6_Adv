@@ -10,11 +10,11 @@
 
     //資料夾結構
     /resources
-    /lang
-        /en
-            messages.php
-        /es
-            messages.php
+        /lang
+            /en
+                messages.php
+            /es
+                messages.php
 
     所有的語言檔案都回傳對應key的字串，例如：
 
