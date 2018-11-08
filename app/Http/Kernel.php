@@ -63,5 +63,9 @@ class Kernel extends HttpKernel
         'test' => \App\Http\Middleware\RouteMiddleTest::class,
         'test2' => \App\Http\Middleware\RouteMiddleTest2::class,
         'args' => \App\Http\Middleware\ArgsMiddleTest::class,
+        'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
     ];
 }

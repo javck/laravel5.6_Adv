@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Http\Request;
+use App;
 
 class SiteController extends Controller
 {
@@ -19,7 +20,8 @@ class SiteController extends Controller
     public function renderShop(Request $request)
     {
         $lang = LaravelLocalization::getCurrentLocale();
-        dd($lang);
+        //dd($lang);
+        App::setLocale($lang);
         return view('shop');
     }
 

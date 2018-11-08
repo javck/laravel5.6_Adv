@@ -8,23 +8,23 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="style.css" type="text/css" />
-	<link rel="stylesheet" href="css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{asset('style.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/dark.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/font-icons.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/animate.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css" />
 
-	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
 
 	<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
-	<link rel="stylesheet" type="text/css" href="include/rs-plugin/css/settings.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="include/rs-plugin/css/layers.css">
-	<link rel="stylesheet" type="text/css" href="include/rs-plugin/css/navigation.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/settings.css')}}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/layers.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/navigation.css')}}">
 
 	<!-- Document Title
 	============================================= -->
@@ -96,11 +96,11 @@
 									<li><a href="#">GBP</a></li>
 								</ul>
 							</li>
-							<li><a href="#">EN</a>
+							<li><a href="#">{{LaravelLocalization::getCurrentLocaleName()}}</a>
 								<ul>
-									<li><a href="#"><img src="images/icons/flags/french.png" alt="French"> FR</a></li>
-									<li><a href="#"><img src="images/icons/flags/italian.png" alt="Italian"> IT</a></li>
-									<li><a href="#"><img src="images/icons/flags/german.png" alt="German"> DE</a></li>
+									<li><a href="{{url('/en/shop')}}"><img src="{{asset('images/icons/flags/usa.png')}}" alt="USA"> USA</a></li>
+									<li><a href="{{url('/zh_tw/shop')}}"><img src="{{asset('images/icons/flags/taiwan.png')}}" alt="Taiwan"> Taiwan</a></li>
+									<li><a href="{{url('/zh/shop')}}"><img src="{{asset('images/icons/flags/china.png')}}" alt="China"> China</a></li>
 								</ul>
 							</li>
 							<li>
@@ -153,8 +153,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Canvas Logo"></a>
-						<a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="standard-logo" data-dark-logo="{{asset('images/logo-dark.png')}}"><img src="{{asset('images/logo.png')}}" alt="Canvas Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="{{asset('images/logo-dark@2x.png')}}"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 
 					<!-- Primary Navigation
@@ -198,7 +198,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=""><img src="images/slider/rev/shop/girl1.jpg" alt="Girl"></div>
+							data-endeasing="Power4.easeIn" style=""><img src="{{asset('images/slider/rev/shop/girl1.jpg')}}" alt="Girl"></div>
 
 							<div class="tp-caption ltl tp-resizeme revo-slider-caps-text uppercase"
 							data-x="570"
@@ -273,7 +273,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=""><img src="images/slider/rev/shop/bag.png" alt="Bag"></div>
+							data-endeasing="Power4.easeIn" style=""><img src="{{asset('images/slider/rev/shop/bag.png')}}" alt="Bag"></div>
 
 							<!-- LAYER NR. 2 -->
 							<div class="tp-caption ltl tp-resizeme revo-slider-caps-text uppercase"
@@ -344,7 +344,7 @@
 							data-elementdelay="0.01"
 							data-endelementdelay="0.1"
 							data-endspeed="1000"
-							data-endeasing="Power4.easeIn" style=""><img src="images/slider/rev/shop/tag.png" alt="Bag"></div>
+							data-endeasing="Power4.easeIn" style=""><img src="{{asset('images/slider/rev/shop/tag.png')}}" alt="Bag"></div>
 
 						</li>
 					</ul>
@@ -381,11 +381,11 @@
 
 							<div class="widget clearfix">
 
-								<img src="images/footer-widget-logo.png" alt="" class="footer-logo">
+								<img src="{{asset('images/footer-widget-logo.png')}}')}}" alt="" class="footer-logo">
 
 								<p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp; <strong>Flexible</strong> Design Standards.</p>
 
-								<div style="background: url('images/world-map.png') no-repeat center center; background-size: 100%;">
+								<div style="background: url('{{asset('images/world-map.png')}}')}}') no-repeat center center; background-size: 100%;">
 									<address>
 										<strong>Headquarters:</strong><br>
 										795 Folsom Ave, Suite 600<br>
@@ -603,25 +603,25 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script src="js/jquery.js"></script>
-	<script src="js/plugins.js"></script>
+	<script src="{{asset('js/jquery.js')}}"></script>
+	<script src="{{asset('js/plugins.js')}}"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="js/functions.js"></script>
+	<script src="{{asset('js/functions.js')}}"></script>
 
 	<!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
-	<script src="include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-	<script src="include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="{{asset('include/rs-plugin/js/jquery.themepunch.tools.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
 
-	<script src="include/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
-	<script src="include/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.video.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.actions.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.migration.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.parallax.min.js')}}"></script>
 
 	<script>
 

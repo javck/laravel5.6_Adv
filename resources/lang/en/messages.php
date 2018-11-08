@@ -13,4 +13,6 @@ return [
     'mesBag' => 'Messenger Bags',
     'content' => 'Grantees insurmountable challenges invest protect, growth improving quality social entrepreneurship.',
     'start' => 'Start Shopping',
+    'welcome' => 'welcome，:name',
+    'buys' => 'you buy one :item|[2,10]you buy some :item|[11,*]you buy many :item',
 ];

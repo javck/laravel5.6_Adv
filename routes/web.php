@@ -1,5 +1,6 @@
 <?php
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,12 @@ Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+//針對語系切換的設計方式
+Route::get('/lang/{lang}', function ($lang) {
+    App::setLocale($lang);
+    return redirect('/');
+});
 
 //針對路由加入單一中介層
 Route::get('/home', 'HomeController@index')->name('home')->middleware('test');

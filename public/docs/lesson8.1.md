@@ -34,6 +34,10 @@
 
     完成後，config/laravellocalization.php將會被建立。在這檔案內，你將找到所有套件能夠被編輯的設定。編輯laravellocalization.php，主要修改supportedLocales，移除所需要支持語系的註解。
 
+        'useAcceptLanguageHeader' => false, //設定當網址沒有語系路徑段時，是否取用瀏覽器Accept-Language header的設定，若否則取自app.php的設定
+        'hideDefaultLocaleInURL' => true, //設定是否隱藏預設的語系路徑段
+        'urlsIgnored' => [], //設定哪些路徑要排除，不進行翻譯轉址
+
     ###服務供應器 Service Providers
     否則，你能夠使用 ConfigServiceProviders （檢查此檔案來得到更多資訊）
 
@@ -407,3 +411,9 @@ Laravel 本地化使用請求的網址來判斷適合的語系。為了達到這
         return $attributes;
 
     });
+
+##知識點 10.問題排除
+
+    ###如果出現以下錯誤，表示Middleware尚未進行註冊，請參考知識點4來進行設定
+        ReflectionException (-1)
+        Class localeSessionRedirect does not exist
