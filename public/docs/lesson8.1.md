@@ -7,10 +7,11 @@
 ##知識點 0.使用套件簡易步驟
 
     Step 1.用compoer安裝套件
-    Step 2.用vendor:publish生成設定檔laravellocalization.php
-    Step 3.修改laravellocalization.php設定檔的supportedLocales
-    Step 4.修改web.php，新增套件路由群組，並移入需要支援翻譯的路由
-    Step 5.(可選)如需使用更多的中介層功能，需在App\Http\Kernal.php的$routeMiddleware陣列進行註冊
+    Step 2.(可選)如果是Laravel5.5以前的版本，需要註冊provider和alias
+    Step 3.用vendor:publish生成設定檔laravellocalization.php
+    Step 4.修改laravellocalization.php設定檔的supportedLocales
+    Step 5.修改web.php，新增套件路由群組，並移入需要支援翻譯的路由
+    Step 6.(可選)如需使用更多的中介層功能，需在App\Http\Kernal.php的$routeMiddleware陣列進行註冊
 
 ##知識點 1.如何安裝套件
 
