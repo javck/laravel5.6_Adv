@@ -32,6 +32,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     });
 });
 
+//mcamara幫助函式測試
+Route::get('testLocale', function () {
+    return LaravelLocalization::getLocalizedURL('en', '/shop', null);
+});
+
 Auth::routes();
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');

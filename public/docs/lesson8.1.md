@@ -1,8 +1,16 @@
 # 多語系支持 mcamara / laravel-localization
 
-> 說明如何使用 mcamara ，來達成讓應用能夠透過路徑，同時支援多個語系，比如/en/shop 抑或是/zh_tw/shop。
+> 說明如何使用 mcamara ，來達成讓應用能夠透過路徑，同時支援多個語系，比如/en/shop 抑或是/zh_tw/shop，還支援 session 和 cookie 等機制記憶。
 
 [mcamara] 官網說明](https://github.com/mcamara/laravel-localization)
+
+##知識點 0.使用套件簡易步驟
+
+    Step 1.用compoer安裝套件
+    Step 2.用vendor:publish生成設定檔laravellocalization.php
+    Step 3.修改laravellocalization.php設定檔的supportedLocales
+    Step 4.修改web.php，新增套件路由群組，並移入需要支援翻譯的路由
+    Step 5.(可選)如需使用更多的中介層功能，需在App\Http\Kernal.php的$routeMiddleware陣列進行註冊
 
 ##知識點 1.如何安裝套件
 
@@ -10,7 +18,7 @@
 
         composer require mcamara/laravel-localization
 
-    在Laravel 5.5，service provider(服務供應器)和facde將會自動地被註冊。但對於較早的框架版本，請跟隨以下的步驟來註冊：
+    在Laravel 5.5，service provider(服務供應器)和facade將會自動地被註冊。但對於較早的框架版本，請跟隨以下的步驟來註冊：
 
     Step 1.在 config/app.php 註冊service provider
 
@@ -71,7 +79,7 @@
 ##知識點 3.如何使用此套件?
 Laravel 本地化使用請求的網址來判斷適合的語系。為了達到這個目的，一個路由群組應該要加到 route.php 檔裡頭。它需要過濾所有必須本地化的頁面。
 
-    // app/Http/routes.php
+    // routes/web.php
     //要被本地化的頁面
     Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     {
