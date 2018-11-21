@@ -100,7 +100,74 @@ Laravel provides several different approaches to validate your application's inc
 
     比如以上的例子，假如title屬性的unique規則失敗後，max規則將不會被確認，另外規則將會依照被分配的順序來執行驗證。
 
-##知識點 3.巢狀屬性的處理
+##知識點 3.表單請求驗證
+
+    ###建立表單驗證
+    因應較為複雜的驗證情境，你也許想要建立一個 "form request"。這些 Form requests 是自定義的請求類別，裡頭包含了驗證邏輯。為了建立一個 form request 類別，使用以下Artisan CLI 命令：
+
+    php artisan make:request ItemRequest
+
+    所生成的類別將會被放在 app/Http/Requests 資料夾。假如這個資料夾不存在，它將會被順道生成，可加入所需要的驗證規則到rules()裡的回傳陣列內。如下例：
+
+    public function rules()
+    {
+        return [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ];
+    }
+
+    所以如果要讓表單請求被驗證只需要在 Controller 的方法參數列裡頭的 $request 前面加上生成的請求類別宣告，如下例。當請求被傳入時將會在 Controller 方法被呼叫前被驗證，這表示你可以不需要在你的 Controller 裡頭加入任何的驗證邏輯：
+
+    public function store(ItemRequest $request)
+    {
+        // 進到裡頭，表示請求有通過驗證...
+
+        // 取得已通過驗證的輸入項內容...
+        $validated = $request->validated();
+    }
+
+    ###加入 After Hooks 到表單請求內
+    假如你想要加入一個 After Hook 到表單請求，你可以在請求類別加入 withValidator()。這個方法得到完整的 validator ，允許你去呼叫任何它的方法，它會在驗證規則在真正的檢查後作處理：
+
+        //設置 validator 實例.
+        public function withValidator($validator){$validator->after(function ($validator) {
+            if ($this->somethingElseIsInvalid()) {
+                $validator->errors()->add('field', 'Something is wrong with this field!');
+            }
+        });
+        }
+
+    ###表單請求授權
+    表單請求類別也包含了一個授權方法。在這個方法內，你能夠確認該登入使用者是否有權限能夠變更所給予的資源。例如，你能夠確認使用者所要變更的部落格留言是否真的屬於他所有?
+
+    //回傳值為布林
+    public function authorize(){
+        $comment = Comment::find($this->route('comment'));
+        return $comment && $this->user()->can('update', $comment);
+    }
+
+    所有的表單請求都繼承了Laravel基礎請求類別，我們使用 user() 來存取當前的認證使用者。要注意的是上方的例子有用到 route() 。這個方法讓你能在被呼叫時取得定義在路由的URI參數，比方說定義在路由檔案的 {comment} 參數，如下面例子：
+
+    Route::post('comment/{comment}');
+
+    假如 authorize() 回傳false，一個帶403狀態碼的HTTP回應將會自動的被回傳，而且你的Controller方法將不會被執行。又假如你希望在其他地方加入驗證邏輯，你必須在這個方法回傳true，才得以呼叫到其他方法，一般設定會如下例所示：
+
+    public function authorize(){
+        return true;
+    }
+
+    ###自定義錯誤訊息
+    你能夠透過覆寫表單請求的 messages() 來自定義錯誤訊息。這個方法需要回傳一個屬性陣列，裡頭是對應的屬性與關聯錯誤訊息，如下例：
+
+    public function messages(){
+        return [
+            'title.required' => 'A title is required',
+            'body.required' => 'A message is required',
+        ];
+    }
+
+##知識點 4.巢狀屬性的處理
 
     假如你的HTTP請求包含了巢狀參數，你將使用".點語法"來指定針對它們的驗證規則，如下例：
 
@@ -114,3 +181,21 @@ Laravel provides several different approaches to validate your application's inc
         'author.name' => 'required',
         'author.description' => 'required',
     ]);
+
+##知識點 5.常用的驗證規則
+
+    email 欄位內容需為e-mail格式
+    file 欄位內容需為成功上傳的檔案
+    image 欄位內容需為一個圖片(jpeg, png, bmp, gif, or svg)
+    integer 欄位內容需為整數
+    max:value 欄位內容需為小於或等於value
+    min:value 欄位內容的最小值
+    nullable 欄位內容需為空值，這在驗證基本型別諸如字串和數字能包含空值的欄位特別有用
+    numeric 欄位內容需為數字
+    required 欄位內容不得為空值
+    string 欄位內容需為字串
+    unique:table,column,except,idColumn 欄位內容在指定的資料表內需為唯一。假如未指定表格，會找欄位名稱的表格名稱，如下例：
+        'email' => 'unique:users,email_address'
+
+
+    [更多的驗證規則請參考這裡](https://laravel.com/docs/5.6/validation#rule-string)
