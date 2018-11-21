@@ -48,6 +48,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:items|max:255',
+            'price' => 'required',
+            'publish_at' => 'nullable|date',
+        ]);
+
         $inputs = $request->all();
         $cgy_ids = $inputs['cgy_id'];
         //將cgy_ids陣列轉換為用逗號隔開的字串

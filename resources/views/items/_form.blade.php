@@ -1,6 +1,18 @@
 <div class="row">
     <div class="col-lg-6"> 
     	<div class="col-lg-12">
+
+			@if ($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{$error }}</li>
+						@endforeach
+
+					</ul>
+				</div>
+			@endif
+
     		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
 			<!-- 名稱 name-->
@@ -68,7 +80,22 @@
 					{{ Form::text('desc',null,['class'=>'form-control','rows'=>'3']) }}
 					<p class="help-block">请输入描述</p>
 				</div>
-            @endif
+			@endif
+			
+			<!-- publish_at 上架日期-->
+    		@if (isset($errors) and $errors->has('publish_at'))
+		    	<div class="form-group has-error">
+		    		{{ Form::label('publish_at','上架日期') }}&nbsp;&nbsp;{{ Form::label('publish_at',$errors->first('publish_at'),['class'=>'text-danger control-label','for'=>'inputError']) }}
+					{{ Form::date('publish_at',null,['class'=>'form-control','rows'=>'3']) }}
+					<p class="help-block">请输入上架日期</p>
+				</div>
+	    	@else
+	    		<div class="form-group">
+		    		{{ Form::label('publish_at','上架日期',['class'=>'text-warning']) }}
+					{{ Form::date('publish_at',null,['class'=>'form-control','rows'=>'3']) }}
+					<p class="help-block">请输入上架日期</p>
+				</div>
+			@endif
 
      		<div class="form-group">
 				{{ Form::label('enabled','是否啟用') }}

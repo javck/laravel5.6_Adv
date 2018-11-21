@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->integer('price')->default(0)->unsigned();
             $table->string('pic', 255)->nullable();
             $table->string('desc', 300)->nullable();
+            $table->date('publish_at')->nullable();
             $table->timestamps();
         });
     }
