@@ -45,8 +45,8 @@ class ItemRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '商品名稱必須要提供',
-            'price.required' => '價格必須要提供',
+            // 'name.required' => '商品名稱必須要提供',
+            // 'price.required' => '價格必須要提供',
         ];
     }
 }

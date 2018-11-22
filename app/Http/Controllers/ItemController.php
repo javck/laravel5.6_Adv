@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use App\Item;
+use App;
+use Auth;
+use Validator;
 
 class ItemController extends Controller
 {
@@ -35,8 +38,10 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        APP::setLocale('zh_tw');
+        //dd(APP::getLocale());
         $cgys = \App\Cgy::get()->pluck('name', 'id');
         return view('items.create', compact('cgys'));
     }
@@ -80,6 +85,16 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:items|max:255',
+            'price' => 'required',
+            'publish_at' => 'nullable|date',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("backend/item/$id/edit")->withErrors($validator)->withInput();
+        }
+
         $inputs = $request->all();
         $item = Item::findOrFail($id);
         $cgy_ids = $inputs['cgy_id'];
