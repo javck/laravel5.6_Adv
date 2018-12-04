@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('cgy_id')->nullable();
             $table->integer('price')->default(0)->unsigned();
             $table->string('pic', 255)->nullable();
+            $table->string('attachment', 255)->nullable();
             $table->string('desc', 300)->nullable();
             $table->date('publish_at')->nullable();
             $table->timestamps();

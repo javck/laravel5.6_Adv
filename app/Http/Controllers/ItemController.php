@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use App\Http\Model\PublicUtil;
 use App\Item;
 use App;
 use Auth;
@@ -55,11 +56,41 @@ class ItemController extends Controller
     public function store(ItemRequest $request)
     {
         $inputs = $request->all();
+
+        if (isset($inputs['picUpload'])) {
+            $fileNames = PublicUtil::picsUpload($request); //圖片上傳處理
+            //pic輸入項處理
+            if (isset($fileNames)) {
+                $inputs['pic'] = '';
+                foreach ($fileNames as $value) {
+                    if (str_len($inputs['pic']) > 0) {
+                        $inputs['pic'] = $inputs['pic'] . ',';
+                    }
+                    $inputs['pic'] = $inputs['pic'] . 'images/upload/' . $value;
+                }
+
+            } else {
+                //送出flash訊息
+                $request->session()->flash('error', '圖片上傳失敗!');
+            }
+
+            //附件处理
+            if (isset($inputs['attachmentUpload']) and $inputs['attachmentUpload'][0] != null) {
+                $fileNames = PublicUtil::filesUpload($request, 'attachmentUpload', false);
+                if (isset($fileNames) && count($fileNames) > 0) {
+                    $inputs['attachment'] = implode(',', $fileNames);
+                }
+            }
+        } else {
+
+        }
         $cgy_ids = $inputs['cgy_id'];
         //將cgy_ids陣列轉換為用逗號隔開的字串
         $inputs['cgy_id'] = implode(',', $cgy_ids);
 
         Item::create($inputs);
+        //送出flash訊息
+        $request->session()->flash('success', '商品建立完成!');
         return redirect('backend/item');
     }
 
@@ -83,24 +114,58 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ItemRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:items|max:255',
-            'price' => 'required',
-            'publish_at' => 'nullable|date',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|unique:items|max:255',
+        //     'price' => 'required',
+        //     'publish_at' => 'nullable|date',
+        // ]);
 
-        if ($validator->fails()) {
-            return redirect("backend/item/$id/edit")->withErrors($validator)->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect("backend/item/$id/edit")->withErrors($validator)->withInput();
+        // }
 
         $inputs = $request->all();
+
+        if (isset($inputs['picUpload'])) {
+            $fileNames = PublicUtil::picsUpload($request); //圖片上傳處理
+            //pic輸入項處理
+            if (isset($fileNames)) {
+                $inputs['pic'] = '';
+                foreach ($fileNames as $value) {
+                    if (strlen($inputs['pic']) > 0) {
+                        $inputs['pic'] = $inputs['pic'] . ',';
+                    }
+                    $inputs['pic'] = $inputs['pic'] . 'images/upload/' . $value;
+                }
+
+            } else {
+                //送出flash訊息
+                $request->session()->flash('error', '圖片上傳失敗!');
+            }
+
+
+        } else {
+
+        }
+
+        //附件处理
+        if (isset($inputs['attachmentUpload']) and $inputs['attachmentUpload'][0] != null) {
+            $fileNames = PublicUtil::filesUpload($request, 'attachmentUpload', false);
+
+            if (isset($fileNames) && count($fileNames) > 0) {
+                $inputs['attachment'] = implode(',', $fileNames);
+            }
+        }
+
         $item = Item::findOrFail($id);
         $cgy_ids = $inputs['cgy_id'];
         //將cgy_ids陣列轉換為用逗號隔開的字串
         $inputs['cgy_id'] = implode(',', $cgy_ids);
         $item->update($inputs);
+        //送出flash訊息
+        $request->session()->flash('success', '商品變更完成!');
         return redirect('backend/item');
     }
 

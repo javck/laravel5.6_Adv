@@ -7,7 +7,7 @@ use App\Cgy;
 
 class Item extends Model
 {
-    protected $fillable = ['name', 'desc', 'pic', 'price', 'cgy_id'];
+    protected $fillable = ['name', 'desc', 'pic', 'price', 'cgy_id', 'attachment'];
 
     //該商品所屬分類
     // public function cgy()
@@ -44,6 +44,21 @@ class Item extends Model
             return '';
         }
 
+    }
+
+    //Mutator
+    public function getPicAttribute($value)
+    {
+        $result = null;
+        if (strrpos($value, ',') != false) {
+            $result = explode(',', $value)[0];
+        } else {
+            $result = $value;
+        }
+        if (strrpos($result, 'http:') === false && strrpos($result, 'https:') === false) {
+            $result = asset('images/' . $result);
+        }
+        return $result;
     }
 
     //該商品屬於哪些訂單

@@ -66,6 +66,32 @@
 					<p class="help-block">请输入圖片網址</p>
 				</div>
 			@endif
+
+			<!-- picUpload 圖片上傳 -->
+			@if (isset($errors) and $errors->has('picUpload'))
+		    	<div class="form-group has-error">
+					{{ Form::label('picUpload','圖片上傳') }}&nbsp;&nbsp;{{ Form::label('picUpload',$errors->first('picUpload'),['class'=>'text-danger control-label','for'=>'inputError']) }}<br>
+					{{ Form::file('picUpload[]',['multiple'=>true]) }}
+				</div>
+	    	@else
+	    		<div class="form-group">
+					{{ Form::label('picUpload','圖片上傳') }}<br>
+					{{ Form::file('picUpload[]',['multiple'=>true]) }}
+				</div>
+			@endif
+
+			<!-- attachment 附件上傳 -->
+			@if (isset($errors) and $errors->has('attachmentUpload'))
+		    	<div class="form-group has-error">
+					{{ Form::label('attachmentUpload','附件上傳') }}&nbsp;&nbsp;{{ Form::label('attachmentUpload',$errors->first('attachmentUpload'),['class'=>'text-danger control-label','for'=>'inputError']) }}<br>
+					{{ Form::file('attachmentUpload[]',['multiple'=>true]) }}
+				</div>
+	    	@else
+	    		<div class="form-group">
+					{{ Form::label('attachmentUpload','附件上傳') }}<br>
+					{{ Form::file('attachmentUpload[]',['multiple'=>true]) }}
+				</div>
+			@endif
 			
 			<!-- 描述 desc-->
     		@if (isset($errors) and $errors->has('desc'))

@@ -62,6 +62,26 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            @if (session()->has('success'))
+                <div class="alert alert-success text-center animated fadeIn">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>
+                        {!! session()->get('success') !!}
+                    </strong>
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger text-center animated fadeIn">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>
+                        <p class="alert alert-error">{{ Session::get('error')}}</p>
+                    </strong>
+                </div>
+            @endif
             @yield('content')
         </div>
         <!-- /.content-wrapper -->

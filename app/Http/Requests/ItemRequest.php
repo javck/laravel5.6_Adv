@@ -25,11 +25,23 @@ class ItemRequest extends FormRequest
     public function rules()
     {
         Log::debug('rules');
-        return [
-            'name' => 'required|unique:items|max:255',
-            'price' => 'required',
-            'publish_at' => 'nullable|date',
-        ];
+        if ($this->isMethod('patch')) {
+            return [
+                'name' => 'required|max:255',
+                'price' => 'required',
+                'picUpload[]' => 'image',
+                'attachmentUpload[]' => 'mimes:pdf',
+                'publish_at' => 'nullable|date',
+            ];
+        } else {
+            return [
+                'name' => 'required|unique:items|max:255',
+                'price' => 'required',
+                'picUpload[]' => 'image',
+                'attachmentUpload[]' => 'mimes:pdf',
+                'publish_at' => 'nullable|date',
+            ];
+        }
     }
 
     public function withValidator($validator)

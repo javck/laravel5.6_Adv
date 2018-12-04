@@ -6,7 +6,7 @@
     <section class="content-header">
         <div class="col-sm-12">
             <a class="btn btn-success btn-rounded" href="{{ url('/backend/item') }}">返回新商品列表 </a><br><br>
-            {{ Form::model($item,['method'=>'patch','url'=>'backend/item/'.$item->id ,'role'=>'form']) }}
+            {{ Form::model($item,['method'=>'patch','url'=>'backend/item/'.$item->id ,'role'=>'form','files'=>true,'enctype'=>"multipart/form-data"]) }}
             <a class="btn btn-warning btn-rounded" onclick="event.preventDefault();document.getElementById('delete-form').submit();">刪除商品</a><br><br>
                 @include('items._form',['submitBtnText'=>'修改'])
             {{ Form::close() }}
