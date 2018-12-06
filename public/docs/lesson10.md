@@ -16,10 +16,8 @@
     (Laravel Collective)[https://laravelcollective.com/docs/5.4/html]
 
     {{ Form::open(['action'=>'ElementController@store','role'=>'form','files'=>true]) }} //要加上files屬性
-    {{ Form::submit(__('label.create'),['class'=>'btn btn-primary']) }}
-    {{ Form::reset(__('label.clear'),['class'=>'btn btn-default']) }}
-    <a class="btn btn-success btn-rounded" href="{{ url('/backend/elements') }}">{{ trans('label.backElements') }} </a><br><br>
-    @include('elements._form')
+    .....
+    //表單內容
     {{ Form::close() }}
 
 ##知識點 3.如何在控制器函式處理圖片上傳

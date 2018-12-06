@@ -63,10 +63,10 @@ class ItemController extends Controller
             if (isset($fileNames)) {
                 $inputs['pic'] = '';
                 foreach ($fileNames as $value) {
-                    if (str_len($inputs['pic']) > 0) {
+                    if (strlen($inputs['pic']) > 0) {
                         $inputs['pic'] = $inputs['pic'] . ',';
                     }
-                    $inputs['pic'] = $inputs['pic'] . 'images/upload/' . $value;
+                    $inputs['pic'] = $inputs['pic'] . 'upload/' . $value;
                 }
 
             } else {
@@ -137,7 +137,7 @@ class ItemController extends Controller
                     if (strlen($inputs['pic']) > 0) {
                         $inputs['pic'] = $inputs['pic'] . ',';
                     }
-                    $inputs['pic'] = $inputs['pic'] . 'images/upload/' . $value;
+                    $inputs['pic'] = $inputs['pic'] . 'upload/' . $value;
                 }
 
             } else {

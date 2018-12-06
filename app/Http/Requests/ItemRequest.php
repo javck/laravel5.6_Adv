@@ -29,6 +29,7 @@ class ItemRequest extends FormRequest
             return [
                 'name' => 'required|max:255',
                 'price' => 'required',
+                'cgy_id' => 'required',
                 'picUpload[]' => 'image',
                 'attachmentUpload[]' => 'mimes:pdf',
                 'publish_at' => 'nullable|date',
@@ -37,6 +38,7 @@ class ItemRequest extends FormRequest
             return [
                 'name' => 'required|unique:items|max:255',
                 'price' => 'required',
+                'cgy_id' => 'required',
                 'picUpload[]' => 'image',
                 'attachmentUpload[]' => 'mimes:pdf',
                 'publish_at' => 'nullable|date',
