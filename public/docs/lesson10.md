@@ -16,8 +16,19 @@
     (Laravel Collective)[https://laravelcollective.com/docs/5.4/html]
 
     {{ Form::open(['action'=>'ElementController@store','role'=>'form','files'=>true]) }} //要加上files屬性
-    .....
     //表單內容
+        <!-- picUpload 圖片上傳 -->
+        @if (isset($errors) and $errors->has('picUpload'))
+            <div class="form-group has-error">
+                {{ Form::label('picUpload','圖片上傳') }}&nbsp;&nbsp;{{ Form::label('picUpload',$errors->first('picUpload'),['class'=>'text-danger control-label','for'=>'inputError']) }}<br>
+                {{ Form::file('picUpload[]',['multiple'=>true]) }}
+            </div>
+        @else
+            <div class="form-group">
+                {{ Form::label('picUpload','圖片上傳') }}<br>
+                {{ Form::file('picUpload[]',['multiple'=>true]) }}
+            </div>
+        @endif
     {{ Form::close() }}
 
 ##知識點 3.如何在控制器函式處理圖片上傳
