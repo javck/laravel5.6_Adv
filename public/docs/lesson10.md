@@ -15,13 +15,13 @@
     這裡示範使用Form套件來建立表單和輸入項，如果需要了解Form套件的相關資訊，請參考以下這裡。
     (Laravel Collective)[https://laravelcollective.com/docs/5.4/html]
 
-    {{ Form::open(['action'=>'ElementController@store','role'=>'form','files'=>true]) }} //要加上files屬性
+    {{ Form::open([...,'files'=>true]) }} //要加上files屬性
     //表單內容
         <!-- picUpload 圖片上傳 -->
         @if (isset($errors) and $errors->has('picUpload'))
             <div class="form-group has-error">
                 {{ Form::label('picUpload','圖片上傳') }}&nbsp;&nbsp;{{ Form::label('picUpload',$errors->first('picUpload'),['class'=>'text-danger control-label','for'=>'inputError']) }}<br>
-                {{ Form::file('picUpload[]',['multiple'=>true]) }}
+                {{ Form::file('picUpload[]',['multiple'=>true]) }} //multiple表示可支持傳多檔案
             </div>
         @else
             <div class="form-group">
@@ -65,11 +65,15 @@
 
     'pics' => 'mimes:jpeg,bmp,png' //可接受的副檔名需為jpeg.bmp.png
 
+    PS：如果輸入項要支援多檔上傳，導致其值為陣列，驗證規則就需修改如下：
+
+        'pics.*' => 'mimes:jpeg,bmp,png' //支援多檔案驗證，加上.*
+
 ##知識點 5.如何在控制器函式處理檔案上傳
 
     //附件处理
     if (isset($inputs['attachmentUpload']) and $inputs['attachmentUpload'][0] != null) {
-        $fileNames = PublicUtil::filesUpload($request, 'attachmentUpload',false);
+        $fileNames = PublicUtil::filesUpload($request, 'attachmentUpload',true);
         if (isset($fileNames) && count($fileNames) > 0) {
             $inputs['attachment'] = implode(',', $fileNames);
         }
@@ -77,7 +81,7 @@
 
     PS0:請在想要儲存的資料夾內新增files/upload子資料夾，並開放存取權限，資料夾包含了storage/app/public以及public。
     PS1:裡頭有使用到PublicUtil函式庫，使用前記得要匯入PublicUtil.php
-    PS2:如有使用到Input這個類別，需要在 config/app.php的aliases加入以下程式碼：
+    PS2:PublicUtil有使用到Input這個類別，如果你打算自己寫處理檔案的函式，需要在 config/app.php的aliases加入以下程式碼：
 
         ....
         'Input' => Illuminate\Support\Facades\Input::class,
@@ -90,4 +94,4 @@
     可使用storage_path()來取得storage路徑，接著使用response的download方法，如下範例所示：
 
     $path = storage_path() . '/app/public/files/upload/1.pdf';
-    return response()->download($path);
+    return response()->download($path); //請使用download()來實作下載

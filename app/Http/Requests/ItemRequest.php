@@ -30,8 +30,8 @@ class ItemRequest extends FormRequest
                 'name' => 'required|max:255',
                 'price' => 'required',
                 'cgy_id' => 'required',
-                'picUpload[]' => 'image',
-                'attachmentUpload[]' => 'mimes:pdf',
+                'picUpload.*' => 'image|mimes:jpeg,jpg,gif,png|max:1000',
+                'attachmentUpload.*' => 'mimes:pdf',
                 'publish_at' => 'nullable|date',
             ];
         } else {
@@ -39,8 +39,8 @@ class ItemRequest extends FormRequest
                 'name' => 'required|unique:items|max:255',
                 'price' => 'required',
                 'cgy_id' => 'required',
-                'picUpload[]' => 'image',
-                'attachmentUpload[]' => 'mimes:pdf',
+                'picUpload.*' => 'image',
+                'attachmentUpload.*' => 'mimes:pdf',
                 'publish_at' => 'nullable|date',
             ];
         }
