@@ -44,6 +44,7 @@
 
     假如你想要把多個一般樣式表壓縮成單檔，你可以使用styles()，如下例所示將vendor資料夾的normalize.css和videojs.css壓縮後生成public/css/all.css。
 
+    //webpack.mix.js
     mix.styles([
         'public/css/vendor/normalize.css',
         'public/css/vendor/videojs.css'
@@ -53,6 +54,7 @@
 
     假如你想要把多個js檔案壓縮成單檔，你可以使用scripts()，如下例所示將public/js資料夾的admin.js和dashboard.js壓縮後生成public/js/all.js。
 
+    //webpack.mix.js
     mix.scripts([
         'public/js/admin.js',
         'public/js/dashboard.js'
@@ -63,8 +65,10 @@
     Copying Files & Directories
     copy()用於複製檔案和資料夾到新的位置去。這在處理特定位於node_modules資料夾的資源，將之重新放至於public資料夾時非常有用。如下例：
 
+    //webpack.mix.js
     mix.copy('node_modules/foo/bar.css', 'public/css/bar.css');
 
     當需要複製一個資料夾，copy()將會移除該資料夾的深層結構。如需保存其深層結構，只需要改用copyDirectory()即可，如下例：
 
+    //webpack.mix.js
     mix.copyDirectory('resources/img', 'public/img');
