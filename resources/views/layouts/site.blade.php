@@ -8,23 +8,24 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{asset('css/all.css')}}" type="text/css" />
+	{{-- <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" type="text/css" />
 	<link rel="stylesheet" href="{{asset('style.css')}}" type="text/css" />
 	<link rel="stylesheet" href="{{asset('css/dark.css')}}" type="text/css" />
 	<link rel="stylesheet" href="{{asset('css/font-icons.css')}}" type="text/css" />
 	<link rel="stylesheet" href="{{asset('css/animate.css')}}" type="text/css" />
-	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css" />
+	{{-- <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css" /> --}} --}}
 
-	<link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" />
+	{{-- <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" /> --}}
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
 
 	<!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
-	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/settings.css')}}" media="screen" />
+	{{-- <link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/settings.css')}}" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/layers.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/navigation.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('include/rs-plugin/css/navigation.css')}}"> --}}
 
 	<!-- Document Title
 	============================================= -->
@@ -603,15 +604,16 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script src="{{asset('js/jquery.js')}}"></script>
-	<script src="{{asset('js/plugins.js')}}"></script>
+	<script src="{{asset('js/all.js')}}"></script>
+	{{-- <script src="{{asset('js/jquery.js')}}"></script>
+	<script src="{{asset('js/plugins.js')}}"></script> --}}
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="{{asset('js/functions.js')}}"></script>
+	{{-- <script src="{{asset('js/functions.js')}}"></script> --}}
 
 	<!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
-	<script src="{{asset('include/rs-plugin/js/jquery.themepunch.tools.min.js')}}"></script>
+	{{-- <script src="{{asset('include/rs-plugin/js/jquery.themepunch.tools.min.js')}}"></script>
 	<script src="{{asset('include/rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
 
 	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.video.min.js')}}"></script>
@@ -621,7 +623,7 @@
 	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
 	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.navigation.min.js')}}"></script>
 	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.migration.min.js')}}"></script>
-	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+	<script src="{{asset('include/rs-plugin/js/extensions/revolution.extension.parallax.min.js')}}"></script> --}}
 
 	<script>
 

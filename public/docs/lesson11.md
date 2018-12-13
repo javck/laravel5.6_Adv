@@ -1,6 +1,7 @@
 # Compiling Assets 如何將 js.css 等資源檔案打包成單一檔案
 
 > 這一節說明如何將 js.css 等資源檔案打包成單一檔案，目的在於減少檔案的請求次數，以優化網頁效能。
+> 相關資訊可以參考(https://laravel.com/docs/5.6/mix)
 
     Laravel Mix 提供了一個便利的API來定義網頁打包作業，讓你輕鬆的處理你的網頁應用裡所使用的網頁資源，如javascript和css。透過簡單的方法串連呼叫，你能夠流暢的定義你的資源處理流。 如下例所示：
 
@@ -8,19 +9,19 @@
 
     假如你曾經被Webpack和資源編譯給弄的頭昏腦脹，你將會愛上Laravel Mix。不過，你不需要在開發應用的時候去使用它。當然，你能夠自由的選用任何的資源處理流工具，甚至是完全不用。
 
-    ##知識點 1.如何安裝?
+##知識點 1.如何安裝?
 
-        在你觸發Mix之前，首先你需要有Node.js，並確認NPM有安裝在你的電腦上面。可以透過以下指令來檢查是否擁有...
+    在你觸發Mix之前，首先你需要有Node.js，並確認NPM有安裝在你的電腦上面。可以透過以下指令來檢查是否擁有...
 
-        node -v
-        npm -v
+    node -v
+    npm -v
 
-        關於Node.js安裝，可以參考這個網頁(http://www.runoob.com/nodejs/nodejs-install-setup.html)
-        至於NPM，Node.js在v0.63版本之後就已經內建NPM了。
+    關於Node.js安裝，可以參考這個網頁(http://www.runoob.com/nodejs/nodejs-install-setup.html)，官方下載安裝檔網址(https://nodejs.org/en/download/)
+    至於NPM，Node.js在v0.63版本之後就已經內建NPM了。
 
-        確保環境已經準備完成，最後剩下Laravel Mix的安裝。在一個新安裝的Laravel專案裡頭，你可以在根目錄找到一個package.json檔案。預設的package.json檔案包含了所有你需要的。就把它想成是composer.json檔案，除了它是定義Node依賴檔案而不是PHP。如需安裝依賴，你只需要開啟Terminal，在專案目錄執行以下指令：
+    確保環境已經準備完成，最後剩下Laravel Mix的安裝。在一個新安裝的Laravel專案裡頭，你可以在根目錄找到一個package.json檔案。預設的package.json檔案包含了所有你需要的。就把它想成是composer.json檔案，除了它是定義Node依賴檔案而不是PHP。如需安裝依賴，你只需要開啟Terminal，在專案目錄執行以下指令：
 
-        npm install
+    npm install
 
 ##知識點 2.運行 Mix
 
@@ -72,3 +73,10 @@
 
     //webpack.mix.js
     mix.copyDirectory('resources/img', 'public/img');
+
+##知識點 6.有辦法關掉 Mix 的 popup 通知嗎?
+
+    預設Mix會在打包完成之後在螢幕的右上方跳出一個popup視窗告訴你作業是否成功，如果需要關閉可以輸入以下程式：
+
+    //webpack.mix.js
+    mix.disableNotifications();
